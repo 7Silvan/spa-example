@@ -1,5 +1,5 @@
 /*
-* app.js - Express server static files
+* app.js - Express server with advanced routing
  */
 
 /*jslint         browser : true, continue : true,
@@ -38,8 +38,27 @@ app.configure('production', function () {
     app.use(express.errorHandler());
 });
 
+// all configurations below are for routes
+
 app.get('/', function (request, response) {
     response.redirect('/spa.html');
+});
+
+app.get('/user/list', function (request, response) {
+    response.contentType('json');
+    response.send({title: 'user list'});
+});
+
+app.get('/user/create', function (request, response) {
+    response.contentType('json');
+    response.send({title: 'user created'});
+});
+
+app.get('/user/read/:id([0-9]+)', function (request, response) {
+    response.contentType('json');
+    response.send({
+        title: 'user with id ' + request.params.id + ' found'
+    });
 });
 // end server configuration
 
