@@ -7,6 +7,9 @@
     <orderEntry type="library" name="jQuery" level="project" />
     <orderEntry type="library" name="Taffy" level="project" />
     <orderEntry type="library" name="Node.js v0.10.26 Core Modules" level="application" />
+    <orderEntry type="library" name="jQuery" level="application" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="node-DefinitelyTyped" level="application" />
   </component>
 </module>
 
