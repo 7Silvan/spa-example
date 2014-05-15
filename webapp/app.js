@@ -1,5 +1,5 @@
 /*
-* app.js - Simple express server with middleware
+* app.js - Express server static files
  */
 
 /*jslint         browser : true, continue : true,
@@ -23,6 +23,7 @@ var
 app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function () {
@@ -38,7 +39,7 @@ app.configure('production', function () {
 });
 
 app.get('/', function (request, response) {
-    response.send('Hello Express');
+    response.redirect('/spa.html');
 });
 // end server configuration
 
