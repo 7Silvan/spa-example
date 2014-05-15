@@ -1,5 +1,5 @@
 /*
-* app.js - Simple express server
+* app.js - Simple express server with middleware
  */
 
 /*jslint         browser : true, continue : true,
@@ -20,6 +20,23 @@ var
 // end module scope variables
 
 // begin server configuration
+app.configure(function () {
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+});
+
+app.configure('development', function () {
+    app.use(express.logger());
+    app.use(express.errorHandler({
+        dumpException: true,
+        showStack: true
+    }));
+});
+
+app.configure('production', function () {
+    app.use(express.errorHandler());
+});
+
 app.get('/', function (request, response) {
     response.send('Hello Express');
 });
