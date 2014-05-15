@@ -1,5 +1,5 @@
 /*
-* app.js - Simple connect server with logging
+* app.js - Simple express server
  */
 
 /*jslint         browser : true, continue : true,
@@ -10,22 +10,25 @@
  */
 /*global */
 
-var server, connectHello,
+// begin module scope variables
+'use strict';
+var
     http = require('http'),
-    connect = require('connect'),
-    app = connect(),
-    bodyText = 'Hello Connect';
+    express = require('express'),
+    app = express(),
+    server = http.createServer(app);
+// end module scope variables
 
-connectHello = function (request, response, next) {
-    response.setHeader('content-length', bodyText.length);
-    response.end(bodyText);
-};
+// begin server configuration
+app.get('/', function (request, response) {
+    response.send('Hello Express');
+});
+// end server configuration
 
-app
-    .use(connect.logger())
-    .use(connectHello);
-
-server = http.createServer(app);
-
+// begin start server
 server.listen(3000);
-console.log('Listening on port %d', server.address().port);
+console.log(
+    'Express server listening on port %d in %s mode',
+    server.address().port, app.settings.env
+);
+// end start server
